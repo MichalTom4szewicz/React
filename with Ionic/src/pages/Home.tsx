@@ -14,8 +14,8 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
-          <IonTitle>Pytajnik</IonTitle>
+        <IonToolbar color="primary">
+          <IonTitle class="ion-text-center">Pytajnik</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

@@ -21,6 +21,13 @@ const Butt: React.FC<ContainerProps> = () => {
 export default Butt;
 */
 import React, { Component } from "react";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  //IonCardSubtitle,
+  IonCardTitle
+} from "@ionic/react";
 
 import { IonContent, IonButton } from "@ionic/react";
 import "./butt.css";
@@ -28,7 +35,7 @@ import "./butt.css";
 import {
   IonList,
   IonRadioGroup,
-  IonListHeader,
+  //IonListHeader,
   IonLabel,
   IonItem,
   IonRadio
@@ -43,6 +50,7 @@ class Butt extends Component<any, any> {
       count: 0,
       choice: 0,
       subb: 0,
+      ed: false,
       popr: 1
     };
 
@@ -56,58 +64,98 @@ class Butt extends Component<any, any> {
     if (arg !== popr && subb !== arg) {
       return "white";
     } else if (arg !== this.state.popr && subb !== 0) {
-      return "warning";
+      return "danger";
     } else if (subb !== 0) {
       return "success";
     }
   }
 
+  choice(arg: number) {
+    document.getElementById("sub")!.style.display = "block";
+
+    this.setState(() => {
+      return {
+        choice: arg
+      };
+    });
+
+    //console.log(this.state.choice);
+  }
+
   render() {
     return (
       <IonContent>
-        <IonList>
-          <IonRadioGroup>
-            <IonListHeader>
-              <IonLabel>"tresc pytania"</IonLabel>
-            </IonListHeader>
+        <IonCard id="card">
+          <IonCardHeader>
+            <IonCardTitle>Question x/y</IonCardTitle>
+          </IonCardHeader>
 
-            <IonItem color={this.wyborKoloru(1)}>
-              <IonLabel>Biff</IonLabel>
-              <IonRadio
-                onClick={() => this.choice1()}
-                id="c1"
-                slot="start"
-                value="1"
-              />
-            </IonItem>
+          <IonCardContent>
+            Keep close to Nature's heart... and break clear away, once in
+            awhile, and climb a mountain or spend a week in the woods. Wash your
+            spirit clean.
+            <IonList>
+              <IonRadioGroup>
+                <IonItem color={this.wyborKoloru(1)}>
+                  <IonLabel class="ion-text-wrap">
+                    Her extensive perceived may any sincerity extremity. Indeed
+                    add rather may pretty see. Old propriety delighted explained
+                  </IonLabel>
+                  <IonRadio
+                    class="item-text-wrap"
+                    onClick={() => this.choice(1)}
+                    id="c1"
+                    slot="start"
+                    value="1"
+                  />
+                </IonItem>
 
-            <IonItem color={this.wyborKoloru(2)}>
-              <IonLabel>Griff</IonLabel>
-              <IonRadio
-                onClick={() => this.choice2()}
-                id="c2"
-                slot="start"
-                value="2"
-              />
-            </IonItem>
+                <IonItem color={this.wyborKoloru(2)}>
+                  <IonLabel class="ion-text-wrap">
+                    perceived otherwise objection saw ten her. Doubt merit sir
+                    the right these alone keeps. By sometimes intention smallnes
+                  </IonLabel>
+                  <IonRadio
+                    onClick={() => this.choice(2)}
+                    id="c2"
+                    slot="start"
+                    value="2"
+                  />
+                </IonItem>
 
-            <IonItem color={this.wyborKoloru(3)}>
-              <IonLabel>Buford</IonLabel>
-              <IonRadio
-                onClick={() => this.choice3()}
-                id="c3"
-                slot="start"
-                value="3"
-              />
-            </IonItem>
-          </IonRadioGroup>
-        </IonList>
-
-        <div id="ee">
-          <IonButton id="sub" color="light" onClick={() => this.submit()}>
-            Submit
-          </IonButton>
-        </div>
+                <IonItem color={this.wyborKoloru(3)}>
+                  <IonLabel class="ion-text-wrap">
+                    Sportsman do offending supported extremity breakfast by
+                    listening. Decisively advantages nor expression
+                  </IonLabel>
+                  <IonRadio
+                    onClick={() => this.choice(3)}
+                    id="c3"
+                    slot="start"
+                    value="3"
+                  />
+                </IonItem>
+              </IonRadioGroup>
+            </IonList>
+            <IonButton
+              class="ion-text-center"
+              id="sub"
+              color="light"
+              onClick={() => this.submit()}
+              hidden={this.state.ed === true ? true : false}
+            >
+              Submit
+            </IonButton>
+            <IonButton
+              class="ion-text-center"
+              color="primary"
+              id="next"
+              hidden={this.state.ed === true ? false : true}
+            >
+              Next Question
+            </IonButton>
+          </IonCardContent>
+        </IonCard>
       </IonContent>
     );
   }
@@ -126,65 +174,10 @@ class Butt extends Component<any, any> {
   submit() {
     this.setState(() => {
       return {
-        subb: this.state.choice
+        subb: this.state.choice,
+        ed: true
       };
     });
-
-    if (this.state.popr === this.state.choice) {
-      //document.getElementById("c" + this.state.choice)!.style.background =        "green";
-
-      console.log(this.state.choice + " yaaaay");
-    } else {
-      document.getElementById("c" + this.state.choice)!.style.background =
-        "white";
-      console.log(this.state.choice + " false");
-    }
-  }
-
-  choice1() {
-    document.getElementById("sub")!.style.display = "block";
-
-    document.getElementById("c1")!.style.background = "white";
-    document.getElementById("c2")!.style.background = "white";
-    document.getElementById("c3")!.style.background = "white";
-
-    this.setState(() => {
-      return {
-        choice: 1
-      };
-    });
-
-    //console.log(this.state.choice);
-  }
-
-  choice2() {
-    document.getElementById("sub")!.style.display = "block";
-
-    document.getElementById("c1")!.style.background = "white";
-    document.getElementById("c2")!.style.background = "white";
-    document.getElementById("c3")!.style.background = "white";
-
-    this.setState(() => {
-      return {
-        choice: 2
-      };
-    });
-    //console.log(this.state.choice);
-  }
-
-  choice3() {
-    document.getElementById("sub")!.style.display = "block";
-
-    document.getElementById("c1")!.style.background = "white";
-    document.getElementById("c2")!.style.background = "white";
-    document.getElementById("c3")!.style.background = "white";
-
-    this.setState(() => {
-      return {
-        choice: 3
-      };
-    });
-    //console.log(this.state.choice);
   }
 
   changeText() {

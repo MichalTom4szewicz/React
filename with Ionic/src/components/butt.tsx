@@ -29,6 +29,8 @@ import {
   IonCardTitle
 } from "@ionic/react";
 
+import { IonMenu, IonHeader, IonToolbar, IonTitle } from "@ionic/react";
+
 import { IonContent, IonButton } from "@ionic/react";
 import "./butt.css";
 

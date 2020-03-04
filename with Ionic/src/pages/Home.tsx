@@ -5,6 +5,7 @@ import {
   IonTitle,
   IonToolbar
 } from "@ionic/react";
+
 import React from "react";
 //import ExploreContainer from "../components/ExploreContainer";
 import Butt from "../components/butt";
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
           <IonTitle class="ion-text-center">Pytajnik</IonTitle>
         </IonToolbar>
       </IonHeader>
+
       <IonContent>
         <Butt />
       </IonContent>

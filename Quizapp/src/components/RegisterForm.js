@@ -11,23 +11,32 @@ import { IonContent,
   IonInput,
   IonToolbar} from '@ionic/react';
 
-const LoginForm = ({
-    handleSubmit,
+const RegisterForm = ({
+    handleRSubmit,
     handleUsernameChange,
+    handleNameChange,
     handlePasswordChange,
     username,
+    name,
     password
    }) => {
    return (
      <>
-       {/*<h2>Login</h2>*/}
+       {/*<h2>Register</h2>*/}
  
-       <form onSubmit={handleSubmit}>
+       <form onSubmit={handleRSubmit}>
          <div>
            username
            <input
              value={username}
              onChange={handleUsernameChange}
+           />
+         </div>
+         <div>
+           name
+           <input
+             value={name}
+             onChange={handleNameChange}
            />
          </div>
          <div>
@@ -38,10 +47,10 @@ const LoginForm = ({
              onChange={handlePasswordChange}
            />
        </div>
-         <IonButton type="submit">login</IonButton>
+         <IonButton type="submit">register</IonButton>
        </form>
      </>
    )
  }
  
- export default LoginForm
+ export default RegisterForm

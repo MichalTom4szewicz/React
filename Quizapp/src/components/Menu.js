@@ -11,7 +11,7 @@ import {
   IonNote,
 } from '@ionic/react';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {addOutline,mailOutline, mailSharp, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import './Menu.css';
 
@@ -39,6 +39,14 @@ const appPages = [
 
 const Menu = (props) => {
 
+  const [vis, setVis] = useState(true) //login visible, registration not
+
+  const onVisChange = arg => {
+    props.setusername('')
+    props.setname('')
+    props.setpassword('')
+    setVis(arg)
+  }
 
   return (
     <IonMenu contentId="main" type="overlay">
@@ -47,7 +55,19 @@ const Menu = (props) => {
           <IonListHeader>QuizApp</IonListHeader>
 
           {props.errorMsg}
-          {props.user === null ? props.loginForm():
+
+          {props.user === null ?
+            <>
+            <IonItem>
+              <IonButton onClick={() => onVisChange(true)} color= {vis === true ? "dark" : "light"}>Login</IonButton>
+              <IonButton onClick={() => onVisChange(false)} color= {vis === true ? "light" : "dark"}>Register</IonButton>
+            </IonItem>
+            </> : ''}
+
+          {props.user === null ? 
+          <>
+            {vis === true ? props.loginForm() : props.registerForm()}
+          </>:
           <>
             <IonNote>{props.user.username} logged in</IonNote>
             <IonButton routerLink={"/"} onClick={event => {
@@ -66,6 +86,8 @@ const Menu = (props) => {
               );
             })}
             </>}
+
+            
         </IonList>
       </IonContent>
     </IonMenu>
